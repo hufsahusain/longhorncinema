@@ -246,6 +246,14 @@
     <Compile Include="Migrations\201804242238019_fixissues.Designer.cs">
       <DependentUpon>201804242238019_fixissues.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804252055041_BhedaSetup3.cs" />
+    <Compile Include="Migrations\201804252055041_BhedaSetup3.Designer.cs">
+      <DependentUpon>201804252055041_BhedaSetup3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804252107554_BhedaSetup4.cs" />
+    <Compile Include="Migrations\201804252107554_BhedaSetup4.Designer.cs">
+      <DependentUpon>201804252107554_BhedaSetup4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Ticket.cs" />
@@ -340,6 +348,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804242238019_fixissues.resx">
       <DependentUpon>201804242238019_fixissues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804252055041_BhedaSetup3.resx">
+      <DependentUpon>201804252055041_BhedaSetup3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804252107554_BhedaSetup4.resx">
+      <DependentUpon>201804252107554_BhedaSetup4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

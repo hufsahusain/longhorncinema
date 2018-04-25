@@ -116,12 +116,12 @@ namespace LonghornCinemaProject.Controllers
             return RedirectToAction("Index");
         }
 
-        //Pass in Order Date?
-        public GetAllTicketPrices()
-        {
+        ////Pass in Order Date?
+        //public GetAllTicketPrices()
+        //{
             
 
-        }
+        //}
 
         protected override void Dispose(bool disposing)
         {
