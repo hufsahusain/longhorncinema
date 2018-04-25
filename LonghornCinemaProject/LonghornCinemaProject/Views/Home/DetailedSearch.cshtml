@@ -1,0 +1,83 @@
+﻿@using LonghornCinemaProject.Controllers
+@model LonghornCinemaProject.Models.Movie
+
+@{
+    /**/
+
+    ViewBag.Title = "Movie Search";
+}
+
+<h2>Detailed Movie Search</h2>
+
+@using (Html.BeginForm("DisplaySearchResults", "Home", FormMethod.Get))
+{
+    //Search Title
+    <p class="form-group">
+        Search Title: @Html.TextBox("strTitle", null, new { @class = "form-control" })
+        <br />
+    </p>
+
+
+    //Search Tagline
+    <p class="form-group">
+        Search Tagline: @Html.TextBox("TagLine", null, new { @class = "form-control" })
+        <br />
+    </p>
+
+    //Genre
+
+    //Textbox and radio buttons for Release Year
+    <p class="form-group">
+        Release Year (Required): @Html.TextBox("ReleaseYear", null, new { @class = "form-control" })
+    </p>
+
+    <div class="form-group">
+        <label> @Html.RadioButton("SelectedComparison", Comparison.Greater, true)Greater</label>
+        <label> @Html.RadioButton("SelectedComparison", Comparison.Less, true)Less</label>
+    </div>
+
+
+    //MPAA Rating Radio Buttons
+    <div class="form-group">
+        <label> @Html.RadioButton("SelectedRating", MPAARating.G, true)G</label>
+        <label> @Html.RadioButton("SelectedRating", MPAARating.PG, true)PG</label>
+        <label> @Html.RadioButton("SelectedRating", MPAARating.PG13, true)PG-13</label>
+        <label> @Html.RadioButton("SelectedRating", MPAARating.R, true)R</label>
+        <label> @Html.RadioButton("SelectedRating", MPAARating.Unrated, true)Unrated</label>
+        <label> @Html.RadioButton("SelectedRating", MPAARating.All, true)All</label>
+    </div>
+
+    @*//Textbox and radio buttons for Customer Ratings
+        <p class="form-group">
+            Number of Stars: @Html.TextBox("strCustomerRating", null, new { @class = "form-control" })
+        </p>
+
+        <div class="form-group">
+            <label> @Html.RadioButton("SelectedComparison", Comparison.Greater, true)Greater</label>
+            <label> @Html.RadioButton("SelectedComparison", Comparison.Less, true)Less</label>
+        </div>*@
+
+    //Actors
+    <p class="form-group">
+        Search Actors (Separate multiple actors by comma.): @Html.TextBox("SelectedActors", null, new { @class = "form-control" })
+    </p>
+
+
+    <p class="form-group">
+        <input type="submit" value="search" class="btn btn-default" />
+    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
