@@ -6,16 +6,23 @@
 }
 <h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Tickets", "Index", "Tickets", null, new { @class = "nav-link" })
+</p>
+<p>
+    @Html.ActionLink("Orders", "Index", "Orders", null, new { @class = "nav-link" })
+</p>
+
 <label>Displaying @ViewBag.SelectedMovies out of @ViewBag.TotalMovies Movies </label>
 
 @using (Html.BeginForm())
 {
-<p class="form-group">
-    Search: @Html.TextBox("strTitle", null, new { @class = "form-control" })<br />
-    <input type="submit" value="Search" class="btn btn-default" />
-    @Html.ActionLink("Detailed Search", "DetailedSearch", null, new { @class = "btn btn-default" })
-    @Html.ActionLink("Show All", "Index", null, new { @class = "btn btn-default" })
-</p>
+    <p class="form-group">
+        Search: @Html.TextBox("strTitle", null, new { @class = "form-control" })<br />
+        <input type="submit" value="Search" class="btn btn-default" />
+        @Html.ActionLink("Detailed Search", "DetailedSearch", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Show All", "Index", null, new { @class = "btn btn-default" })
+    </p>
 
 
 

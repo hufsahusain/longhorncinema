@@ -22,21 +22,16 @@ namespace LonghornCinemaProject.Controllers
         //Create an instance of the db context
         AppDbContext db = new AppDbContext();
 
-        //public ActionResult Index()
-        //{
-        //    return View(db.Movies.ToList());
-        //}
-
         // GET: Home
         public ActionResult DetailedSearch()
-        {
-            //ViewBag.AllGenres = GetAllGenres;
+        {   
+            ViewBag.AllGenres = GetAllGenres();
             return View();
             
         }
 
         //Create action to return search results/query to be displayed to the index
-        public ActionResult DisplaySearchResults(String strTitle, String TagLine, String ReleaseYear, Comparison ?SelectedComparison, MPAARating ?SelectedRating, String SelectedActors)/*, int[] SelectedGenre, , , , String StrCustomerRating, )*/
+        public ActionResult DisplaySearchResults(String strTitle, String TagLine, String ReleaseYear, Comparison ?SelectedComparison, MPAARating ?SelectedRating, String SelectedActors, String StrCustomerRating)/*, int[] SelectedGenre, , , , , )*/
         {
             // create list of repositories
             List<Movie> SelectedMovies = new List<Movie>();
@@ -101,10 +96,6 @@ namespace LonghornCinemaProject.Controllers
             }
 
 
-
-            //        // create query for entries modified after inputted date
-
-
             // create queries for mpaa rating
             switch (SelectedRating)
             {
@@ -129,45 +120,45 @@ namespace LonghornCinemaProject.Controllers
 
             }
 
-            ////create query for customer rating
-            ////Need seed data
-            ////Adjust queries for average of MovieCustomerRatings
-            //switch (SelectedComparison)
-            //{
-            //    case Comparison.Greater:
-            //        if (StrCustomerRating != null)
-            //        {
-            //            decimal decCustomerRating;
-            //            try
-            //            {
-            //                decCustomerRating = Convert.ToDecimal(StrCustomerRating);
-            //                query = query.Where(r => r.MovieCustomerRating >= (decCustomerRating));
-            //            }
-            //            catch
-            //            {
-            //                return View();
-            //            }
-            //        }
+            //create query for customer rating
+            //Need seed data
+            //TODO: Adjust queries for average of MovieCustomerRatings
+            switch (SelectedComparison)
+            {
+                case Comparison.Greater:
+                    if (StrCustomerRating != null)
+                    {
+                        decimal decCustomerRating;
+                        try
+                        {
+                            decCustomerRating = Convert.ToDecimal(StrCustomerRating);
+                            query = query.Where(r => r.MovieCustomerRating >= (decCustomerRating));
+                        }
+                        catch
+                        {
+                            return View();
+                        }
+                    }
 
-            //        break;
+                    break;
 
-            //    case Comparison.Less:
-            //        if (StrCustomerRating != null)
-            //        {
-            //            decimal decNumberOfStars;
-            //            try
-            //            {
-            //                decNumberOfStars = Convert.ToDecimal(StrCustomerRating);
-            //                query = query.Where(r => r.MovieCustomerRating >= (decNumberOfStars));
-            //            }
-            //            catch
-            //            {
-            //                return View();
-            //            }
-            //        }
+                case Comparison.Less:
+                    if (StrCustomerRating != null)
+                    {
+                        decimal decNumberOfStars;
+                        try
+                        {
+                            decNumberOfStars = Convert.ToDecimal(StrCustomerRating);
+                            query = query.Where(r => r.MovieCustomerRating >= (decNumberOfStars));
+                        }
+                        catch
+                        {
+                            return View();
+                        }
+                    }
 
-            //        break;
-            //}
+                    break;
+            }
 
             //Actors Search
             if (SelectedActors != null)
@@ -181,8 +172,8 @@ namespace LonghornCinemaProject.Controllers
 
       
             //repository Count
-            ViewBag.TotalRepositories = db.Movies.Count();
-            ViewBag.SelectedRepositories = SelectedMovies.Count();
+            ViewBag.TotalMovies = db.Movies.Count();
+            ViewBag.SelectedMovies = SelectedMovies.Count();
 
             //order list
             SelectedMovies.OrderByDescending(m => m.ReleaseDate);
@@ -248,8 +239,8 @@ namespace LonghornCinemaProject.Controllers
 
 
                 //repository Count
-                ViewBag.TotalRepositories = db.Movies.Count();
-                ViewBag.SelectedRepositories = SelectedMovies.Count();
+                ViewBag.TotalMovies = db.Movies.Count();
+                ViewBag.SelectedMovies = SelectedMovies.Count();
 
                 //order list
                 SelectedMovies.OrderByDescending(r => r.ReleaseDate);
