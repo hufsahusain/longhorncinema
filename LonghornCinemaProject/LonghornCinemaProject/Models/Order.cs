@@ -12,11 +12,13 @@ namespace LonghornCinemaProject.Models
 
         public Int32 OrderID { get; set; }
 
+        public DateTime OrderDate { get { return DateTime.Now; } }
+
         //Nav property for Customer
         public virtual Customer Customer { get; set; }
 
         //Nav property for Tickets
-        public virtual List<Ticket> Tickets { get; set; }
+        public virtual List<OrderDetail> OrderDetails { get; set; }
     }
 
 

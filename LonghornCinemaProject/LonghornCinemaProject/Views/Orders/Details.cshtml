@@ -1,4 +1,5 @@
 ﻿@model LonghornCinemaProject.Models.Order
+@using LonghornCinemaProject.Models
 
 @{
     ViewBag.Title = "Details";
@@ -11,44 +12,8 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TicketID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TicketID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CustomerID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CustomerID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreditCard)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreditCard)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PopcornPoints)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PopcornPoints)
-        </dd>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </dt>  
 
     </dl>
 </div>

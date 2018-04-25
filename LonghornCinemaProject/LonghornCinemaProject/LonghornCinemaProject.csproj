@@ -247,6 +247,7 @@
       <DependentUpon>201804242238019_fixissues.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
