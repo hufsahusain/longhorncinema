@@ -17,6 +17,11 @@ namespace LonghornCinemaProject.Models
 
         public List<String> SeatNumbers { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public Decimal Price { get; set; }
+
         public virtual List<Movie> Movies { get; set; }
+
+        public virtual List<Ticket> Tickets { get; set; }
     }
 }

@@ -27,7 +27,5 @@ namespace LonghornCinemaProject.DAL
         public DbSet<Ticket> Tickets { get; set; }
         //Create the db set
         public DbSet<Genre> Genres { get; set; }
-        //Create the db set
-        public DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }

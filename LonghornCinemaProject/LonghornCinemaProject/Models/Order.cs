@@ -29,7 +29,7 @@ namespace LonghornCinemaProject.Models
         public virtual Customer Customer { get; set; }
 
         //Nav property for Tickets
-        public virtual List<OrderDetail> OrderDetails { get; set; }
+        public virtual List<Ticket> Tickets { get; set; }
     }
 
 

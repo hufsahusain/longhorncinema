@@ -79,52 +79,51 @@ namespace LonghornCinemaProject.Controllers
         public ActionResult AddToOrder(int OrderID)
         {
             //Create a new instance of the Order detail class
-            OrderDetail od = new OrderDetail();
+            Ticket t = new Ticket();
 
             //Find the Order for this order detail
             Order ord = db.Orders.Find(OrderID);
 
             //Set the new Order detail's Order to the new ord we just found
-            od.Order = ord;
+            t.Order = ord;
 
             //Populate the view bag with the list of Movies
-            ViewBag.AllTickets = GetAllTickets();
+            ViewBag.AllShowtimes = GetAllShowtimes();
 
             //Give the view the Order detail object we just created
-            return View(od);
+            return View(t);
         }
 
         [HttpPost]
-        public ActionResult AddToOrder(OrderDetail od, int SelectedTicket)
+        public ActionResult AddToOrder(Ticket t, int SelectedShowtime)
         {
             //Find the product associated with the int SelectedCourse
-            Ticket ticket = db.Tickets.Find(SelectedTicket);
+            Showtime showtime = db.Showtimes.Find(SelectedShowtime);
 
             //set the product property of the order detail to this newly found product
-            od.Ticket = ticket;
+            t.Showtime = showtime;
 
             //Find the order associated with the order detail
-            Order ord = db.Orders.Find(od.Order.OrderID);
+            Order ord = db.Orders.Find(t.Order.OrderID);
 
             //set the property of the order detail to this newly found order
-            od.Order = ord;
+            t.Order = ord;
 
             //set the value of the product fee
-            od.TicketPrice = ticket.Price;
+            t.TicketPrice = showtime.Price;
 
-            //set the value of the total fees???
 
             if (ModelState.IsValid)//model meets all requirements
             {
                 //add the order detail to the database
-                db.OrderDetails.Add(od);
+                db.Tickets.Add(t);
                 db.SaveChanges();
                 return RedirectToAction("Details", "Orders", new { id = ord.OrderID });
             }
 
             //model state is not valid
-            ViewBag.AllTickets = GetAllTickets();
-            return View(od);
+            ViewBag.AllShowtimes = GetAllShowtimes();
+            return View(t);
 
         }
 
@@ -142,6 +141,24 @@ namespace LonghornCinemaProject.Controllers
                 return RedirectToAction("Index");
             }
             return View(order);
+        }
+
+        public ActionResult RemoveFromOrder(int OrderID)
+        {
+            Order ord = db.Orders.Find(OrderID);
+
+            if (ord == null)//order is not found
+            {
+                return RedirectToAction("Details", new { id = OrderID });
+            }
+
+            if (ord.Tickets.Count == 0) // there are no order details
+            {
+                return RedirectToAction("Details", new { id = OrderID });
+            }
+
+            //pass the list of order details to the view
+            return View(ord.Tickets);
         }
 
         // GET: Orders/Delete/5
@@ -170,16 +187,16 @@ namespace LonghornCinemaProject.Controllers
             return RedirectToAction("Index");
         }
 
-        public SelectList GetAllTickets()
+        public SelectList GetAllShowtimes()
         {
             //Get the list of Products in order by Products name
-            List<Ticket> allTickets = db.Tickets.OrderBy(t => t.TicketID).ToList();
+            List<Showtime> allShowtimes = db.Showtimes.OrderBy(s => s.ShowtimeTime).ToList();
 
             //convert the list to a select list
-            SelectList selTickets = new SelectList(allTickets, "TicketID", "Title");
+            SelectList selShowtimes = new SelectList(allShowtimes, "ShowtimeID", "Showtime Time");
 
             //return the select list
-            return selTickets;
+            return selShowtimes;
 
         }
 
