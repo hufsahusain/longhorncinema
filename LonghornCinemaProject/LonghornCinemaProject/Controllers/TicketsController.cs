@@ -15,87 +15,98 @@ namespace LonghornCinemaProject.Controllers
     {
         private AppDbContext db = new AppDbContext();
 
-        // GET: Tickets
-        public ActionResult Index()
-        {
-            return View(db.Tickets.ToList());
-        }
+        //// GET: Tickets
+        //public ActionResult Index()
+        //{
+        //    return View(db.Tickets.ToList());
+        //}
 
-        // GET: Tickets/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ticket ticket = db.Tickets.Find(id);
-            if (ticket == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ticket);
-        }
+        //// GET: Tickets/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Ticket ticket = db.Tickets.Find(id);
+        //    if (ticket == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(ticket);
+        //}
 
-        // GET: Tickets/Create
-        public ActionResult Create()
-        {
-            ViewBag.AllMovies = GetAllMovies();
-            return View();
+        //// GET: Tickets/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.AllMovies = GetAllMovies();
+        //    return View();
             
-        }
+        //}
 
-        public SelectList GetAllMovies()
-        {
-            //Get the list of Products in order by Products name
-            List<Movie> allMovies = db.Movies.OrderBy(m => m.Title).ToList();
+        //public SelectList GetAllMovies()
+        //{
+        //    //Get the list of Products in order by Products name
+        //    List<Movie> allMovies = db.Movies.OrderBy(m => m.Title).ToList();
 
-            //convert the list to a select list
-            SelectList selMovies = new SelectList(allMovies, "MovieID", "Title");
+        //    //convert the list to a select list
+        //    SelectList selMovies = new SelectList(allMovies, "MovieID", "Title");
 
-            //return the select list
-            return selMovies;
+        //    //return the select list
+        //    return selMovies;
 
-        }
+        //}
 
-        // POST: Tickets/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TicketID,TicketPrice")] Ticket ticket)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Tickets.Add(ticket);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //// POST: Tickets/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "TicketID,TicketPrice")] Ticket ticket)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Tickets.Add(ticket);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(ticket);
-        }
+        //    return View(ticket);
+        //}
 
-        // GET: Tickets/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ticket ticket = db.Tickets.Find(id);
-            if (ticket == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ticket);
-        }
+        //// GET: Tickets/Edit/5
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Ticket ticket = db.Tickets.Find(id);
+        //    if (ticket == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(ticket);
+        //}
 
         // POST: Tickets/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // to protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TicketID,TicketPrice")] Ticket ticket)
         {
+            //find the product associated with this order
+            Ticket t = db.Tickets.Include(tick => tick.Order)
+                                                          .Include(tick => tick.Showtime)
+                                                          .FirstOrDefault(x => x.TicketID == ticket.TicketID);
+
+            //update the number of students
+            t.Quantity = ticket.Quantity;
+
+            //update the course fee from the related course
+            t.TicketPrice = t.Showtime.Price;
+
             if (ModelState.IsValid)
             {
                 db.Entry(ticket).State = EntityState.Modified;

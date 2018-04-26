@@ -51,8 +51,15 @@ namespace LonghornCinemaProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ShowtimeID,ShowtimeTime,TheaterNumber")] Showtime showtime)
+        public ActionResult Create([Bind(Include = "ShowtimeID,ShowtimeTime,TheaterNumber")] Showtime showtime, int SelectedMovies)
         {
+            //add Movies
+            
+            //find the vendor
+            Movie mov = db.Movies.Find(SelectedMovies);
+            showtime.Movies.Add(mov);
+            
+
             if (ModelState.IsValid)
             {
                 db.Showtimes.Add(showtime);
@@ -60,6 +67,8 @@ namespace LonghornCinemaProject.Controllers
                 return RedirectToAction("Index");
             }
 
+            //Populate the view bag with the department list
+            //ViewBag.AllMovies = GetAllMovies(showtime);
             return View(showtime);
         }
 

@@ -270,6 +270,10 @@
     <Compile Include="Migrations\201804262110274_BhedaSetup7.Designer.cs">
       <DependentUpon>201804262110274_BhedaSetup7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804262207122_BhedaSetup8.cs" />
+    <Compile Include="Migrations\201804262207122_BhedaSetup8.Designer.cs">
+      <DependentUpon>201804262207122_BhedaSetup8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -382,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804262110274_BhedaSetup7.resx">
       <DependentUpon>201804262110274_BhedaSetup7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804262207122_BhedaSetup8.resx">
+      <DependentUpon>201804262207122_BhedaSetup8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
