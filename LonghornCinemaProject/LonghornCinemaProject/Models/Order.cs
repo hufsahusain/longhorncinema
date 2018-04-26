@@ -10,9 +10,15 @@ namespace LonghornCinemaProject.Models
     public class Order
     {
 
+        //Order Name
         [Display(Name = "Order ID")]
         public Int32 OrderID { get; set; }
 
+        //Order Number
+        [Display(Name = "Order Number")]
+        public Int32 OrderNumber { get; set; }
+
+        //Order Date
         [DataType(DataType.Date)]
         [Display(Name = "Order Date")]
         [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}",

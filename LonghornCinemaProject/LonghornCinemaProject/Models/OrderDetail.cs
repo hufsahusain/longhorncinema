@@ -34,6 +34,6 @@ namespace LonghornCinemaProject.Models
         public virtual Order Order { get; set; }
 
         //Navigational Property with Product (One-Many)
-        public virtual Ticket Product { get; set; }
+        public virtual Ticket Ticket { get; set; }
     }
 }

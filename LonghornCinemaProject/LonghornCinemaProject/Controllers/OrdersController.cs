@@ -37,23 +37,25 @@ namespace LonghornCinemaProject.Controllers
         }
 
         // GET: Orders/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Orders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderID,TicketID,CustomerID,Email,CreditCard,PopcornPoints")] Order order)
+        public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate,Notes")] Order order)
         {
+            //Find next order number
+            order.OrderNumber = Utilities.GenerateOrderNumber.GetNextOrderNumber();
+
+            //Record date of Order
+            order.OrderDate = DateTime.Today;
+
+
             if (ModelState.IsValid)
             {
                 db.Orders.Add(order);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AddToOrder", new { OrderID = order.OrderID });
             }
 
             return View(order);
@@ -72,6 +74,58 @@ namespace LonghornCinemaProject.Controllers
                 return HttpNotFound();
             }
             return View(order);
+        }
+
+        public ActionResult AddToOrder(int OrderID)
+        {
+            //Create a new instance of the Order detail class
+            OrderDetail od = new OrderDetail();
+
+            //Find the Order for this order detail
+            Order ord = db.Orders.Find(OrderID);
+
+            //Set the new Order detail's Order to the new ord we just found
+            od.Order = ord;
+
+            //Populate the view bag with the list of Movies
+            ViewBag.AllMovies = GetAllTickets();
+
+            //Give the view the Order detail object we just created
+            return View(od);
+        }
+
+        [HttpPost]
+        public ActionResult AddToOrder(OrderDetail od, int SelectedTicket)
+        {
+            //Find the product associated with the int SelectedCourse
+            Ticket ticket = db.Tickets.Find(SelectedTicket);
+
+            //set the product property of the order detail to this newly found product
+            od.Ticket = ticket;
+
+            //Find the order associated with the order detail
+            Order ord = db.Orders.Find(od.Order.OrderID);
+
+            //set the property of the order detail to this newly found order
+            od.Order = ord;
+
+            //set the value of the product fee
+            od.TicketPrice = ticket.Price;
+
+            //set the value of the total fees???
+
+            if (ModelState.IsValid)//model meets all requirements
+            {
+                //add the order detail to the database
+                db.OrderDetails.Add(od);
+                db.SaveChanges();
+                return RedirectToAction("Details", "Orders", new { id = ord.OrderID });
+            }
+
+            //model state is not valid
+            ViewBag.AllTickets = GetAllTickets();
+            return View(od);
+
         }
 
         // POST: Orders/Edit/5
@@ -114,6 +168,19 @@ namespace LonghornCinemaProject.Controllers
             db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public SelectList GetAllTickets()
+        {
+            //Get the list of Products in order by Products name
+            List<Ticket> allTickets = db.Tickets.OrderBy(t => t.TicketID).ToList();
+
+            //convert the list to a select list
+            SelectList selTickets = new SelectList(allTickets, "TicketID", "Title");
+
+            //return the select list
+            return selTickets;
+
         }
 
         protected override void Dispose(bool disposing)

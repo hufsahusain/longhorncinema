@@ -12,13 +12,16 @@ namespace LonghornCinemaProject.Models
         public Int32 TicketID { get; set; }
 
         //Ticket Price
-        public Decimal TicketPrice { get;  set; }
+        public Decimal Price { get;  set; }
 
         //Nav Property for Seat
         public virtual Seat Seat { get; set; }
 
         //Nav Property for Order
         public virtual List<OrderDetail> OrderDetails { get; set; }
+
+        //Nav Property for Movies
+        public virtual List<Movie> Movies { get; set; }
 
 
 
