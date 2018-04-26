@@ -88,7 +88,7 @@ namespace LonghornCinemaProject.Controllers
             od.Order = ord;
 
             //Populate the view bag with the list of Movies
-            ViewBag.AllMovies = GetAllTickets();
+            ViewBag.AllTickets = GetAllTickets();
 
             //Give the view the Order detail object we just created
             return View(od);

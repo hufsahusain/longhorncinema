@@ -39,7 +39,22 @@ namespace LonghornCinemaProject.Controllers
         // GET: Tickets/Create
         public ActionResult Create()
         {
+            ViewBag.AllMovies = GetAllMovies();
             return View();
+            
+        }
+
+        public SelectList GetAllMovies()
+        {
+            //Get the list of Products in order by Products name
+            List<Movie> allMovies = db.Movies.OrderBy(m => m.Title).ToList();
+
+            //convert the list to a select list
+            SelectList selMovies = new SelectList(allMovies, "MovieID", "Title");
+
+            //return the select list
+            return selMovies;
+
         }
 
         // POST: Tickets/Create

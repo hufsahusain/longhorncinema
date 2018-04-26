@@ -14,6 +14,9 @@ namespace LonghornCinemaProject.Models
         //Ticket Price
         public Decimal Price { get;  set; }
 
+        //Ticket Quantity
+        public Decimal Quantity { get; set; }
+
         //Nav Property for Seat
         public virtual Seat Seat { get; set; }
 
