@@ -16,7 +16,7 @@ namespace LonghornCinemaProject.DAL
 
             if (Showtimes == null)
             {
-                Showtimes = new DbSet<Showtime>
+              
             }
         }
 
