@@ -1,23 +1,23 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using LonghornCinemaProject.Models;
+using System.Data.Entity;
 
 
 namespace LonghornCinemaProject.DAL
 {
-    public class AppDbContext : IdentityDbContext<AppUser>
+    public class AppDbContext:DbContext
     {
-        public AppDbContext()
-           : base("MyDBConnection", throwIfV1Schema: false) { }
-
-        public static AppDbContext Create()
+        //Constructor that invokes the base constructor
+        public AppDbContext() : base("MyDBConnection")
         {
-            return new AppDbContext();
 
+            if (Showtimes == null)
+            {
+                Showtimes = new DbSet<Showtime>
+            }
         }
 
         //Create the db set
@@ -35,7 +35,6 @@ namespace LonghornCinemaProject.DAL
         //Create the db set
         public DbSet<Genre> Genres { get; set; }
 
-        //NOTE: This is a dbSet that you need to make roles work
-        public DbSet<AppRole> AppRoles { get; set; }
+       
     }
 }
