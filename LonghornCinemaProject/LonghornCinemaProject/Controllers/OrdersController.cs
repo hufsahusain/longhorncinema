@@ -198,7 +198,7 @@ namespace LonghornCinemaProject.Controllers
             List<Showtime> allShowtimes = db.Showtimes.OrderBy(s => s.ShowtimeTime).ToList();
 
             //convert the list to a select list
-            SelectList selShowtimes = new SelectList(allShowtimes, "ShowtimeID", "Showtime Time");
+            SelectList selShowtimes = new SelectList(allShowtimes, "ShowtimeID", "ShowtimeTime");
 
             //return the select list
             return selShowtimes;

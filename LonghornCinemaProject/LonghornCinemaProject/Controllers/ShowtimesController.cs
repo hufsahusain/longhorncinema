@@ -92,7 +92,8 @@ namespace LonghornCinemaProject.Controllers
           
             //find the moveie
             Movie mov = db.Movies.Find(SelectedMovies);
-            showtime.Movies.Add(mov);
+            showtime.Movie = mov;
+            
 
 
             //add vendors

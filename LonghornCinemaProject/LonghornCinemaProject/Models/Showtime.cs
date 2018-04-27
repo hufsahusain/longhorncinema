@@ -20,15 +20,15 @@ namespace LonghornCinemaProject.Models
         [DisplayFormat(DataFormatString = "{0:C}")]
         public Decimal Price { get; set; }
 
-        public virtual List<Movie> Movies { get; set; }
+        public virtual Movie Movie { get; set; }
 
         public virtual List<Ticket> Tickets { get; set; }
 
         public Showtime()
         {
-            if (Movies == null)
+            if (Movie == null)
             {
-                Movies = new List<Movie>();
+                Movie = new Movie();
             }
         }
     }
