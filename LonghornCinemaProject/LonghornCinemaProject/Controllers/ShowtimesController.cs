@@ -46,19 +46,61 @@ namespace LonghornCinemaProject.Controllers
             return View();
         }
 
+        public MultiSelectList GetAllMovies()
+        {
+            //Get the list of Products in order by Products name
+            List<Movie> allMovies = db.Movies.OrderBy(p => p.Title).ToList();
+
+            //convert the list to a select list
+            MultiSelectList selMovies = new SelectList(allMovies, "MovieID", "Title");
+
+            //return the select list
+            return selMovies;
+
+        }
+
+        public MultiSelectList GetAllMovies(Showtime showtime)
+        {
+            List<Movie> allMovies = db.Movies.OrderBy(m => m.Title).ToList();
+
+            //convert list of selected departments to ints
+            List<Int32> SelectedMovies = new List<Int32>();
+
+            //loop through the course's departments and add the department id
+            foreach (Movie mov in showtime.Movies)
+            {
+                SelectedMovies.Add(mov.MovieID);
+            }
+
+            //create the multiselect list
+            MultiSelectList selVendors = new MultiSelectList(allMovies, "VendorID", "Name", SelectedMovies);
+
+            //return the multiselect list
+            return selVendors;
+
+        }
+
+
         // POST: Showtimes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ShowtimeID,ShowtimeTime,TheaterNumber")] Showtime showtime, int SelectedMovies)
+        public ActionResult Create([Bind(Include = "ShowtimeID,ShowtimeTime,TheaterNumber")] Showtime showtime, int[] SelectedMovies)
         {
             //add Movies
             
             //find the vendor
             Movie mov = db.Movies.Find(SelectedMovies);
             showtime.Movies.Add(mov);
-            
+
+            //add vendors
+            foreach (int i in SelectedMovies)
+            {
+                //find the vendor
+                Movie mvie = db.Movies.Find(i);
+                showtime.Movies.Add(mvie);
+            }
 
             if (ModelState.IsValid)
             {
@@ -129,19 +171,7 @@ namespace LonghornCinemaProject.Controllers
             return RedirectToAction("Index");
         }
 
-        public SelectList GetAllMovies()
-        {
-            //Get the list of Products in order by Products name
-            List<Movie> allMovies = db.Movies.OrderBy(p => p.Title).ToList();
-
-            //convert the list to a select list
-            SelectList selMovies = new SelectList(allMovies, "MovieID", "Title");
-
-            //return the select list
-            return selMovies;
-
-        }
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

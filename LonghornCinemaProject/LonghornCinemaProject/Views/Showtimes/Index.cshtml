@@ -17,6 +17,14 @@
         <th>
             @Html.DisplayNameFor(model => model.TheaterNumber)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeatNumbers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+
+
         <th></th>
     </tr>
 
@@ -29,9 +37,15 @@
             @Html.DisplayFor(modelItem => item.TheaterNumber)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ShowtimeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ShowtimeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ShowtimeID })
+            @Html.DisplayFor(modelItem => item.SeatNumbers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ShowtimeID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ShowtimeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ShowtimeID })
         </td>
     </tr>
 }

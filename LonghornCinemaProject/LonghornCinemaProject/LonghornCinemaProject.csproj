@@ -218,6 +218,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\SeatsController.cs" />
     <Compile Include="Controllers\ShowtimesController.cs" />
@@ -273,6 +274,14 @@
     <Compile Include="Migrations\201804262207122_BhedaSetup8.cs" />
     <Compile Include="Migrations\201804262207122_BhedaSetup8.Designer.cs">
       <DependentUpon>201804262207122_BhedaSetup8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804270111069_BhedaSetup9.cs" />
+    <Compile Include="Migrations\201804270111069_BhedaSetup9.Designer.cs">
+      <DependentUpon>201804270111069_BhedaSetup9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804270123027_BhedaSetup10.cs" />
+    <Compile Include="Migrations\201804270123027_BhedaSetup10.Designer.cs">
+      <DependentUpon>201804270123027_BhedaSetup10.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Ticket.cs" />
@@ -337,6 +346,13 @@
     <Content Include="Views\Tickets\Details.cshtml" />
     <Content Include="Views\Tickets\Edit.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
+    <Content Include="Views\Orders\AddToOrder.cshtml" />
+    <Content Include="Views\Orders\RemoveFromOrder.cshtml" />
+    <Content Include="Views\Movies\Create.cshtml" />
+    <Content Include="Views\Movies\Delete.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Movies\Edit.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -389,6 +405,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804262207122_BhedaSetup8.resx">
       <DependentUpon>201804262207122_BhedaSetup8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270111069_BhedaSetup9.resx">
+      <DependentUpon>201804270111069_BhedaSetup9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270123027_BhedaSetup10.resx">
+      <DependentUpon>201804270123027_BhedaSetup10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
