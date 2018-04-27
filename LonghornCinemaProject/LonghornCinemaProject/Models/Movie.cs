@@ -58,7 +58,15 @@ namespace LonghornCinemaProject.Models
 
             // Navigational Properties
             public virtual List<Showtime> Showtimes { get; set; }
-        }
+
+            public Movie()
+            {
+                if (Showtimes == null)
+                {
+                    Showtimes = new List<Showtime>();
+                }
+            }
+    }
 
 
 
