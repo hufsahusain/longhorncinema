@@ -109,7 +109,7 @@ namespace LonghornCinemaProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-           
+            db.SaveChanges();
             //Populate the view bag with the department list
             //ViewBag.AllMovies = GetAllMovies(showtime);
             return View(showtime);

@@ -11,12 +11,11 @@ namespace LonghornCinemaProject.DAL
     public class AppDbContext:DbContext
     {
         //Constructor that invokes the base constructor
-        public AppDbContext() : base("MyDBConnection")
-        {
+        public AppDbContext() : base("MyDBConnection") {}
 
             if (Showtimes == null)
             {
-              
+                Showtimes = new DbSet<Showtime>
             }
         }
 
@@ -34,7 +33,5 @@ namespace LonghornCinemaProject.DAL
         public DbSet<Ticket> Tickets { get; set; }
         //Create the db set
         public DbSet<Genre> Genres { get; set; }
-
-       
     }
 }
