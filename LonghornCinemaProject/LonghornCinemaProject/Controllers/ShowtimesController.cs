@@ -89,10 +89,11 @@ namespace LonghornCinemaProject.Controllers
         public ActionResult Create([Bind(Include = "ShowtimeID,ShowtimeTime,TheaterNumber")] Showtime showtime, int SelectedMovies)
         {
             //add Movies
-            
-            //find the vendor
+          
+            //find the moveie
             Movie mov = db.Movies.Find(SelectedMovies);
             showtime.Movies.Add(mov);
+
 
             //add vendors
             //foreach (int i in SelectedMovies)
@@ -108,7 +109,7 @@ namespace LonghornCinemaProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            db.SaveChanges();
             //Populate the view bag with the department list
             //ViewBag.AllMovies = GetAllMovies(showtime);
             return View(showtime);

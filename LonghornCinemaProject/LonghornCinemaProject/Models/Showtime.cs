@@ -23,5 +23,13 @@ namespace LonghornCinemaProject.Models
         public virtual List<Movie> Movies { get; set; }
 
         public virtual List<Ticket> Tickets { get; set; }
+
+        public Showtime()
+        {
+            if (Movies == null)
+            {
+                Movies = new List<Movie>();
+            }
+        }
     }
 }
