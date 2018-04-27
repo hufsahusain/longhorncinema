@@ -13,8 +13,11 @@ namespace LonghornCinemaProject.DAL
         //Constructor that invokes the base constructor
         public AppDbContext() : base("MyDBConnection") {}
 
-           
-        
+            if (Showtimes == null)
+            {
+                Showtimes = new DbSet<Showtime>
+            }
+        }
 
         //Create the db set
         public DbSet<Customer>Customers { get; set; }
