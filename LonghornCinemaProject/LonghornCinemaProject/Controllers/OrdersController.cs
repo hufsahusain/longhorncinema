@@ -14,7 +14,11 @@ namespace LonghornCinemaProject.Controllers
 {
     public class OrdersController : Controller
     {
-        private AppDbContext db = new AppDbContext();
+        public Nullable<DateTime> myDateTime { get; set; }
+       
+      
+    
+    private AppDbContext db = new AppDbContext();
 
         // GET: Orders
         public ActionResult Index()
@@ -48,14 +52,20 @@ namespace LonghornCinemaProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+ 
         public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate,Notes")] Order order)
         {
             //Find next order number
             order.OrderNumber = Utilities.GenerateOrderNumber.GetNextOrderNumber();
 
             //Record date of Order
-            order.OrderDate = DateTime.Today;
+            DateTime time = new DateTime();
+           
 
+
+
+                order.OrderDate = time;
+            
 
             if (ModelState.IsValid)
             {
@@ -96,6 +106,9 @@ namespace LonghornCinemaProject.Controllers
             //Populate the view bag with the list of Movies
             ViewBag.AllShowtimes = GetAllShowtimes();
 
+            //Populate the view bag with the list of Seats
+            ViewBag.AllSeats = GetAllSeats();
+
             //Give the view the Order detail object we just created
             return View(t);
         }
@@ -109,7 +122,9 @@ namespace LonghornCinemaProject.Controllers
             {
                 Ticket tick = new Ticket();
 
-                //tick.Seat = GetSeatName()
+                tick.Seat.SeatName = GetSeatName(i);
+                tick.Seat.SeatID = i;
+              
 
             }
 
