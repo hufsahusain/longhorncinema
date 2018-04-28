@@ -318,6 +318,18 @@
     <Compile Include="Migrations\201804271727130_BhedaSetup13.Designer.cs">
       <DependentUpon>201804271727130_BhedaSetup13.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804280201271_BhedaSetup14.cs" />
+    <Compile Include="Migrations\201804280201271_BhedaSetup14.Designer.cs">
+      <DependentUpon>201804280201271_BhedaSetup14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804280208370_BhedaSetup15.cs" />
+    <Compile Include="Migrations\201804280208370_BhedaSetup15.Designer.cs">
+      <DependentUpon>201804280208370_BhedaSetup15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804280233028_BhedaSetup16.cs" />
+    <Compile Include="Migrations\201804280233028_BhedaSetup16.Designer.cs">
+      <DependentUpon>201804280233028_BhedaSetup16.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppUser.cs" />
@@ -461,6 +473,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804271727130_BhedaSetup13.resx">
       <DependentUpon>201804271727130_BhedaSetup13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804280201271_BhedaSetup14.resx">
+      <DependentUpon>201804280201271_BhedaSetup14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804280208370_BhedaSetup15.resx">
+      <DependentUpon>201804280208370_BhedaSetup15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804280233028_BhedaSetup16.resx">
+      <DependentUpon>201804280233028_BhedaSetup16.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

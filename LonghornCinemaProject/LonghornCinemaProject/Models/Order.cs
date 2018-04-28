@@ -20,7 +20,7 @@ namespace LonghornCinemaProject.Models
         public Int32 OrderNumber { get; set; }
 
         //Order Date
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [Display(Name = "Order Date")]
         [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}",
                                             ApplyFormatInEditMode = true)]
