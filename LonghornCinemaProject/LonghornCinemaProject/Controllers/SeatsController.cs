@@ -15,25 +15,25 @@ namespace LonghornCinemaProject.Controllers
     {
         private AppDbContext db = new AppDbContext();
 
-        public SelectList FindAvailableSeats(List<Ticket> tickets) //tickets is the list of 
+        public MultiSelectList FindAvailableSeats(List<Ticket> tickets) //tickets is the list of 
         {
             List<Seat> TakenSeats = new List<Seat>();
 
             foreach (Ticket t in tickets)
             {
                 Seat s = new Seat();
-                s.SeatName = t.Seat;
+                s.SeatName = GetSeatName(s.SeatID);
                 s.SeatID = GetSeatID(s.SeatName);
                 TakenSeats.Add(s);
             }
 
-            List<Seat> AvailableSeats = GetAllSeats().Except(TakenSeats);
+            List<Seat> AvailableSeats = GetAllSeats().Except(TakenSeats).ToList();
 
-            SelectList slAvailableSeats = new SelectList(AvailableSeats, "SeatID", "SeatName");
-            return AvailableSeats;
+            MultiSelectList slAvailableSeats = new MultiSelectList(AvailableSeats, "SeatID", "SeatName");
+
+            return slAvailableSeats;
 
         }
-
 
         public List<Seat> GetAllSeats()
         {
@@ -176,44 +176,44 @@ namespace LonghornCinemaProject.Controllers
             }
         }
 
-        public Int32 GetSeatName(Int32 seatID)
+        public String GetSeatName(Int32 seatID)
         {
             if (seatID == 0) return "1A";
-            if (seatID == 2) return 1;
-            if (seatID == 3) return 2;
-            if (seatID == 4) return 3;
-            if (seatID == 5) return 4;
-            if (seatID == 6) return 5;
-            if (seatID == 7) return 6;
-            if (seatID == 8) return 7;
-            if (seatID == 9) return 8;
-            if (seatID == 10) return 9;
-            if (seatID == 11) return 10;
-            if (seatID == 12) return 11;
-            if (seatID == 13) return 12;
-            if (seatID == 14) return 13;
-            if (seatID == 15) return 14;
-            if (seatID == 16) return 15;
-            if (seatID == 17) return 16;
-            if (seatID == 18) return 17;
-            if (seatID == 19) return 18;
-            if (seatID == 20) return 19;
-            if (seatID == 21) return 20;
-            if (seatID == 22) return 21;
-            if (seatID == 23) return 22;
-            if (seatID == 24) return 23;
-            if (seatID == 25) return 24;
-            if (seatID == 26) return 25;
-            if (seatID == 27) return 26;
-            if (seatID == 28) return 27;
-            if (seatID == 29) return 28;
-            if (seatID == 30) return 29;
-            if (seatID == 31) return 30;
-            if (seatID == 32) return 31;
+            if (seatID == 2) return "1B";
+            if (seatID == 3) return "1C";
+            if (seatID == 4) return "1D";
+            if (seatID == 5) return "2A";
+            if (seatID == 6) return "2B";
+            if (seatID == 7) return "2C";
+            if (seatID == 8) return "2D";
+            if (seatID == 9) return "3A";
+            if (seatID == 10) return "3B";
+            if (seatID == 11) return "3C";
+            if (seatID == 12) return "3D";
+            if (seatID == 13) return "4A";
+            if (seatID == 14) return "4B";
+            if (seatID == 15) return "4C";
+            if (seatID == 16) return "4D";
+            if (seatID == 17) return "5A";
+            if (seatID == 18) return "5B";
+            if (seatID == 19) return "5C";
+            if (seatID == 20) return "5D";
+            if (seatID == 21) return "6A";
+            if (seatID == 22) return "6B";
+            if (seatID == 23) return "6C";
+            if (seatID == 24) return "6D";
+            if (seatID == 25) return "7A";
+            if (seatID == 26) return "7B";
+            if (seatID == 27) return "7C";
+            if (seatID == 28) return "7D";
+            if (seatID == 29) return "8A";
+            if (seatID == 30) return "8B";
+            if (seatID == 31) return "8C";
+            if (seatID == 32) return "8D";
 
             else
             {
-                return 100;
+                return "n/a";
             }
         }
 

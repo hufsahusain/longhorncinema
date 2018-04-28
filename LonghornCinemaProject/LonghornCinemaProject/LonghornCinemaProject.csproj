@@ -330,6 +330,10 @@
     <Compile Include="Migrations\201804280233028_BhedaSetup16.Designer.cs">
       <DependentUpon>201804280233028_BhedaSetup16.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804280334498_BhedaSetup17.cs" />
+    <Compile Include="Migrations\201804280334498_BhedaSetup17.Designer.cs">
+      <DependentUpon>201804280334498_BhedaSetup17.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\MovieData.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -483,6 +487,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804280233028_BhedaSetup16.resx">
       <DependentUpon>201804280233028_BhedaSetup16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804280334498_BhedaSetup17.resx">
+      <DependentUpon>201804280334498_BhedaSetup17.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
