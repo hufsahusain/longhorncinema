@@ -8,17 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using LonghornCinemaProject.DAL;
 using LonghornCinemaProject.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using LonghornCinemaProject.Controllers;
 
 namespace LonghornCinemaProject.Controllers
 {
-    [Authorize]
     public class OrdersController : Controller
     {
-        public Nullable<DateTime> myDateTime { get; set; }
+        
        
       
     
@@ -27,25 +23,7 @@ namespace LonghornCinemaProject.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            //find the orders for the customer
-
-            // for managers to view all orders
-            if (User.IsInRole("Manager"))
-            {
-                return View(db.Orders.ToList());
-            }
-            // for customer to see own orders
-            else
-            {
-                // ask identity
-                String UserID = User.Identity.GetUserId();
-
-                // find all orders asssociated with specific user
-                List<Order> Orders = db.Orders.Where(o => o.AppUsers.Id == UserID).ToList();
-
-                // send view specific to what the user needs to see
-                return View(Orders);
-            }
+            return View(db.Orders.ToList());
         }
 
         // GET: Orders/Details/5
@@ -79,18 +57,10 @@ namespace LonghornCinemaProject.Controllers
         {
             //Find next order number
             order.OrderNumber = Utilities.GenerateOrderNumber.GetNextOrderNumber();
-            String UserID = User.Identity.GetUserId();
-            order.AppUsers = db.Users.Where(u => u.Id == UserID).First();
-
 
             //Record date of Order
-            DateTime time = new DateTime();
+            order.OrderDate = DateTime.Today;
            
-
-
-
-                order.OrderDate = time;
-            
 
             if (ModelState.IsValid)
             {
@@ -122,17 +92,23 @@ namespace LonghornCinemaProject.Controllers
             //Create a new instance of the Order detail class
             Ticket t = new Ticket();
 
+            //Create List of Tickets
+            List<Ticket> TicketList = new List<Ticket>();
+
+            //Add tickets to list
+            TicketList.Add(t);
+
             //Find the Order for this order detail
             Order ord = db.Orders.Find(OrderID);
 
-            //Set the new Order detail's Order to the new ord we just found
+            //Set the new Ticket's Order to the new ord we just found
             t.Order = ord;
 
             //Populate the view bag with the list of Movies
             ViewBag.AllShowtimes = GetAllShowtimes();
 
             //Populate the view bag with the list of Seats
-            ViewBag.AllSeats = GetAllSeats();
+            ViewBag.AvailableSeats = FindAvailableSeats(TicketList);
 
             //Give the view the Order detail object we just created
             return View(t);
@@ -154,13 +130,20 @@ namespace LonghornCinemaProject.Controllers
             }
 
             //Find the product associated with the int SelectedCourse
+
             Showtime showtime = db.Showtimes.Find(SelectedShowtime);
 
             //set the product property of the order detail to this newly found product
             t.Showtime = showtime;
 
+            if (t.Showtime.ShowtimeTime <= DateTime.Now)
+            {
+                Showtime showTime = db.Showtimes.Find(SelectedShowtime);
+            }
+
+
             //Find the order associated with the order detail
-             ord = db.Orders.Find(t.Order.OrderID);
+            ord = db.Orders.Find(t.Order.OrderID);
 
             //set the property of the order detail to this newly found order
             t.Order = ord;
