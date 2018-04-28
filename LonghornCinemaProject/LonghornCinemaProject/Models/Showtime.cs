@@ -10,6 +10,8 @@ namespace LonghornCinemaProject.Models
     {
         public Int32 ShowtimeID { get; set; }
 
+        [Required(ErrorMessage = "A Showtime that has not already begun is required")]
+        [Display(Name = "Showtime")]
         [DataType(DataType.DateTime)]
         public DateTime ShowtimeTime { get; set; }
 

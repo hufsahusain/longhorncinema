@@ -31,17 +31,11 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">Select a class:</label>
-        <div class="col-md-10">
-            @Html.DropDownList("SelectedShowtime", (SelectList)ViewBag.AllShowtimes, new { @class = "form-control" })
-        </div>
-    </div>
 
     <div class="form-group">
         <label class="control-label col-md-2">Select a class:</label>
         <div class="col-md-10">
-            @Html.DropDownList("SelectedSeat", (SelectList)ViewBag.AllShowtimes, new { @class = "form-control" })
+            @Html.DropDownList("SelectedSeats", (MultiSelectList)ViewBag.AllSeats, new { @class = "form-control" })
         </div>
     </div>
 
