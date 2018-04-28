@@ -338,6 +338,10 @@
     <Compile Include="Migrations\201804280349288_BhedaSetup18.Designer.cs">
       <DependentUpon>201804280349288_BhedaSetup18.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804280640199_HufIdentityOrdersPtI.cs" />
+    <Compile Include="Migrations\201804280640199_HufIdentityOrdersPtI.Designer.cs">
+      <DependentUpon>201804280640199_HufIdentityOrdersPtI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\MovieData.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -497,6 +501,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804280349288_BhedaSetup18.resx">
       <DependentUpon>201804280349288_BhedaSetup18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804280640199_HufIdentityOrdersPtI.resx">
+      <DependentUpon>201804280640199_HufIdentityOrdersPtI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

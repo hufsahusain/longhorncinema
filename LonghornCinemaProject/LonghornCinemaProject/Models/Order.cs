@@ -59,6 +59,9 @@ namespace LonghornCinemaProject.Models
         //Nav property for Tickets
         public virtual List<Ticket> Tickets { get; set; }
 
+        // for identity
+        public virtual AppUser AppUsers { get; set; }
+
         public Order()
         {
             if (Tickets == null)

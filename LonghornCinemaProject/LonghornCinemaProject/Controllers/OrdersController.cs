@@ -8,10 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using LonghornCinemaProject.DAL;
 using LonghornCinemaProject.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using LonghornCinemaProject.Controllers;
 
 namespace LonghornCinemaProject.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         public Nullable<DateTime> myDateTime { get; set; }
@@ -23,7 +27,25 @@ namespace LonghornCinemaProject.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            return View(db.Orders.ToList());
+            //find the orders for the customer
+
+            // for managers to view all orders
+            if (User.IsInRole("Manager"))
+            {
+                return View(db.Orders.ToList());
+            }
+            // for customer to see own orders
+            else
+            {
+                // ask identity
+                String UserID = User.Identity.GetUserId();
+
+                // find all orders asssociated with specific user
+                List<Order> Orders = db.Orders.Where(o => o.AppUsers.Id == UserID).ToList();
+
+                // send view specific to what the user needs to see
+                return View(Orders);
+            }
         }
 
         // GET: Orders/Details/5
@@ -57,6 +79,9 @@ namespace LonghornCinemaProject.Controllers
         {
             //Find next order number
             order.OrderNumber = Utilities.GenerateOrderNumber.GetNextOrderNumber();
+            String UserID = User.Identity.GetUserId();
+            order.AppUsers = db.Users.Where(u => u.Id == UserID).First();
+
 
             //Record date of Order
             DateTime time = new DateTime();
