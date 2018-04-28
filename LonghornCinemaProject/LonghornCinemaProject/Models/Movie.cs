@@ -27,6 +27,9 @@ namespace LonghornCinemaProject.Models
             [Display(Name = "Genres")]
             public virtual List<Genre> Genres { get; set; }
 
+            [Display(Name = "Genre Name")]
+            public String GenreName { get; set; }
+
             [DataType(DataType.Date, ErrorMessage = "Please enter a valid year of release")]
             [Display(Name = "Release Date")]
             [DisplayFormat(DataFormatString = "{0:mm/dd/yyyy}", ApplyFormatInEditMode = true)]

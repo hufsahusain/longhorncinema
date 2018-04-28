@@ -331,6 +331,7 @@
       <DependentUpon>201804280233028_BhedaSetup16.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\MovieData.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\IdentityRoles.cs" />
