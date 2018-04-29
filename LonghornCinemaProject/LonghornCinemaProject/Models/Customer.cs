@@ -20,11 +20,25 @@ namespace LonghornCinemaProject.Models
         //First Name
         public String FirstName { get; set; }
 
+        //Middle Initial 
+        public String MiddleInitial { get; set; }
+
         //Last Name
         public String LastName { get; set; }
 
-        //Address
-        public String Address { get; set; }
+        //Address pt 1
+        public String City { get; set; }
+
+        //Address pt 2
+        public String State { get; set; }
+
+        //Address pt 3
+        public String Street { get; set; }
+
+        //Address pt 4
+        [DisplayFormat(DataFormatString = "{0:#####}",
+            ApplyFormatInEditMode = true)]
+        public Int32 ZipCode { get; set; }
 
         //Phone Number
         [DataType(DataType.PhoneNumber)]
@@ -37,8 +51,12 @@ namespace LonghornCinemaProject.Models
         //Credit Card
         [DisplayFormat(DataFormatString = "{0:####-####-####-####}",
             ApplyFormatInEditMode = true)]
-
         public Int32 CreditCard { get; set; }
+
+        //SSN
+        [DisplayFormat(DataFormatString = "{0:###-##-####}",
+            ApplyFormatInEditMode = true)]
+        public Int32 SSN { get; set; }
 
         //Popcorn Points 
         public Int32 PopcornPoints { get; set; }

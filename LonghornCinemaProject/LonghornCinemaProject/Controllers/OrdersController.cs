@@ -15,9 +15,6 @@ namespace LonghornCinemaProject.Controllers
     public class OrdersController : Controller
     {
         
-       
-      
-    
     private AppDbContext db = new AppDbContext();
 
         // GET: Orders
