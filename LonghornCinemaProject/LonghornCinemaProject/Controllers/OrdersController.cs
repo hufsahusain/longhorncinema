@@ -115,13 +115,14 @@ namespace LonghornCinemaProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToOrder(Ticket t, int SelectedShowtime, int[] SelectedSeats)
+        public ActionResult AddToOrder(Ticket t, int SelectedShowtime, int[] AvailableSeats)
         {
             Order ord = new Order();
 
-            foreach (int i in SelectedSeats)
+            foreach (int i in AvailableSeats)
             {
                 Ticket tick = new Ticket();
+                tick.Seat = new Seat();
 
                 tick.Seat.SeatName = GetSeatName(i);
                 tick.Seat.SeatID = i;
@@ -130,16 +131,18 @@ namespace LonghornCinemaProject.Controllers
             }
 
             //Find the product associated with the int SelectedCourse
-
             Showtime showtime = db.Showtimes.Find(SelectedShowtime);
 
-            //set the product property of the order detail to this newly found product
-            t.Showtime = showtime;
 
-            if (t.Showtime.ShowtimeTime <= DateTime.Now)
-            {
-                Showtime showTime = db.Showtimes.Find(SelectedShowtime);
-            }
+            //set the product property of the order detail to this newly found product
+            //if (t.Showtime.ShowtimeTime <= DateTime.Now)
+            //{
+                t.Showtime = showtime;
+            //}
+            //else
+            //{
+            //    RedirectToAction("Order", "AddToOrder");
+            //}
 
 
             //Find the order associated with the order detail
@@ -151,6 +154,11 @@ namespace LonghornCinemaProject.Controllers
             //set the value of the product fee
             t.TicketPrice = showtime.Price;
 
+            //Limited Capacity Logic
+            if (AvailableSeats == null)
+            {
+                RedirectToAction("SoldOut", "Orders");
+            }
 
             if (ModelState.IsValid)//model meets all requirements
             {

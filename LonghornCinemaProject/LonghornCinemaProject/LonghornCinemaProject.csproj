@@ -346,6 +346,10 @@
     <Compile Include="Migrations\201804280727408_BhedaSetup20.Designer.cs">
       <DependentUpon>201804280727408_BhedaSetup20.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804282324180_BhedaSetup21.cs" />
+    <Compile Include="Migrations\201804282324180_BhedaSetup21.Designer.cs">
+      <DependentUpon>201804282324180_BhedaSetup21.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\MovieData.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -429,6 +433,7 @@
     <Content Include="Views\RoleAdmin\Edit.cshtml" />
     <Content Include="Views\RoleAdmin\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Orders\SoldOut.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -511,6 +516,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804280727408_BhedaSetup20.resx">
       <DependentUpon>201804280727408_BhedaSetup20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804282324180_BhedaSetup21.resx">
+      <DependentUpon>201804282324180_BhedaSetup21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
