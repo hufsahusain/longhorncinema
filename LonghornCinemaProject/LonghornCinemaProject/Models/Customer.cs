@@ -42,7 +42,7 @@ namespace LonghornCinemaProject.Models
 
         //Phone Number
         [DataType(DataType.PhoneNumber)]
-        public Int32 PhoneNumber { get; set; }
+        public Int64 PhoneNumber { get; set; }
 
         //BirthDate
         [DataType(DataType.Date)]
@@ -56,7 +56,7 @@ namespace LonghornCinemaProject.Models
         //SSN
         [DisplayFormat(DataFormatString = "{0:###-##-####}",
             ApplyFormatInEditMode = true)]
-        public Int32 SSN { get; set; }
+        public Int64 SSN { get; set; }
 
         //Popcorn Points 
         public Int32 PopcornPoints { get; set; }
